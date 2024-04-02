@@ -1,22 +1,21 @@
 SELECT
-    violations.summons_number,
-    violations.issue_date,
-    violations.violation_code,
-    violations.is_manhattan_96th_st_below,
-    violations.issuing_agency,
-    violations.violation_location,
-    violations.violation_precinct,
-    violations.issuer_precinct,
-    violations.issuer_code,
-    violations.issuer_command,
-    violations.issuer_squad,
-    violations.violation_time,
-    violations.violation_county,
-    violations.violation_legal_code,
-    codes.fee_usd
+  VIOLATIONS.SUMMONS_NUMBER,
+  VIOLATIONS.ISSUE_DATE,
+  VIOLATIONS.VIOLATION_CODE,
+  VIOLATIONS.IS_MANHATTAN_96TH_ST_BELOW,
+  VIOLATIONS.ISSUING_AGENCY,
+  VIOLATIONS.VIOLATION_LOCATION,
+  VIOLATIONS.VIOLATION_PRECINCT,
+  VIOLATIONS.ISSUER_PRECINCT,
+  VIOLATIONS.ISSUER_CODE,
+  VIOLATIONS.ISSUER_COMMAND,
+  VIOLATIONS.ISSUER_SQUAD,
+  VIOLATIONS.VIOLATION_TIME,
+  VIOLATIONS.VIOLATION_COUNTY,
+  VIOLATIONS.VIOLATION_LEGAL_CODE,
+  CODES.FEE_USD
 FROM
-    {{ref('silver_parking_violations')}} AS violations
-LEFT JOIN
-    {{ref('silver_parking_violation_codes')}} AS codes ON
-    violations.violation_code = codes.violation_code AND
-    violations.is_manhattan_96th_st_below = codes.is_manhattan_96th_st_below
+  {{ref('silver_parking_violation')}} AS VIOLATIONS
+  LEFT JOIN {{ref('silver_parking_violation_codes')}} AS CODES
+  ON VIOLATIONS.VIOLATION_CODE = CODES.VIOLATION_CODE
+  AND VIOLATIONS.IS_MANHATTAN_96TH_ST_BELOW = CODES.IS_MANHATTAN_96TH_ST_BELOW

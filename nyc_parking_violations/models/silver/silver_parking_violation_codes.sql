@@ -1,24 +1,29 @@
-WITH manhattan_violation_codes AS (
-    SELECT
-        violation_code,
-        definition,
-        TRUE AS is_manhattan_96th_st_below,
-        manhattan_96th_st_below AS fee_usd,
-    FROM
-        {{ref('bronze_parking_violation_codes')}}
-),
-
-all_other_violation_codes AS (
-    SELECT
-        violation_code,
-        definition,
-        FALSE AS is_manhattan_96th_st_below,
-        all_other_areas AS fee_usd,
-    FROM
-        {{ref('bronze_parking_violation_codes')}}
+WITH MANHATTAN_VIOLATION_CODES AS (
+  SELECT
+    VIOLATION_CODE,
+    DEFINITION,
+    TRUE AS IS_MANHATTAN_96TH_ST_BELOW,
+    MANHATTAN_96TH_ST_BELOW AS FEE_USD,
+  FROM
+    {{ref('bronze_parking_violations_codes')}}
+), ALL_OTHER_VIOLATION_CODES AS (
+  SELECT
+    VIOLATION_CODE,
+    DEFINITION,
+    FALSE AS IS_MANHATTAN_96TH_ST_BELOW,
+    ALL_OTHER_AREAS AS FEE_USD,
+  FROM
+    {{ref('bronze_parking_violations_codes')}}
 )
-
-SELECT * FROM manhattan_violation_codes
-UNION ALL
-SELECT * FROM all_other_violation_codes
-ORDER BY violation_code ASC
+SELECT
+  *
+FROM
+  MANHATTAN_VIOLATION_CODES
+UNION
+ALL
+SELECT
+  *
+FROM
+  ALL_OTHER_VIOLATION_CODES
+ORDER BY
+  VIOLATION_CODE ASC
