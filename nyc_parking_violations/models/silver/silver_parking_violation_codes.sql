@@ -5,7 +5,7 @@ WITH MANHATTAN_VIOLATION_CODES AS (
     TRUE AS IS_MANHATTAN_96TH_ST_BELOW,
     MANHATTAN_96TH_ST_BELOW AS FEE_USD,
   FROM
-    {{ref('bronze_parking_violations_codes')}}
+    {{ref('bronze_parking_violation_codes')}}
 ), ALL_OTHER_VIOLATION_CODES AS (
   SELECT
     VIOLATION_CODE,
@@ -13,7 +13,7 @@ WITH MANHATTAN_VIOLATION_CODES AS (
     FALSE AS IS_MANHATTAN_96TH_ST_BELOW,
     ALL_OTHER_AREAS AS FEE_USD,
   FROM
-    {{ref('bronze_parking_violations_codes')}}
+    {{ref('bronze_parking_violation_codes')}}
 )
 SELECT
   *

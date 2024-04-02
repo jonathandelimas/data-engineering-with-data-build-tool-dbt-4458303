@@ -40,7 +40,7 @@ models:
     silver:
       silver_parking_violation_codes:
         +materialized: ephemeral
-      silver_parking_violations:
+      silver_parking_violation:
         +materialized: ephemeral
       silver_violation_tickets:
         +materialized: view
@@ -48,3 +48,5 @@ models:
         +materialized: view
     gold:
       +materialized: table
+tests:
+  +store_failures: true
